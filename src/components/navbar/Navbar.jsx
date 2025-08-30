@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { FiSearch, FiMenu, FiX } from "react-icons/fi";
+import styles from '@/components/navbar/navbar.module.css';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +26,7 @@ export default function Navbar() {
             </div>
 
             {/* Main Navbar */}
-            <nav className="flex bg-white text-black items-center justify-between px-6 py-4 border-b border-b-gray-400">
+            <nav className={`${styles.mainNav} flex items-center justify-between px-6 py-4 `}>
                 {/* Logo (Optional Placeholder) */}
                 <div className="text-lg font-bold">LOGO</div>
 

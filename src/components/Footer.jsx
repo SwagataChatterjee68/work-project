@@ -7,7 +7,7 @@ import { CiFacebook, CiTwitter, CiLinkedin, CiInstagram } from "react-icons/ci";
 const Footer = () => {
     return (
         <div>
-            <footer className="max-w-8xl  px-6 py-10 mb-10  border-b border-gray-700">
+            <footer className="max-w-8xl  px-6 py-10  border-b border-gray-700">
                 {/* Top Section */}
                 <div className="max-w-7xl mx-auto px-10 py-20 grid md:grid-cols-5 gap-20  ">
                     {/* Logo */}
