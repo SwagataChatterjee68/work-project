@@ -27,6 +27,7 @@ export default function Home() {
               </Link>
             ))}
           </div>
+          <div className="h-96 border-l-2 border-gray-500"></div>
           <img src="/header.png" alt="" />
         </div>
       </section>
