@@ -1,6 +1,16 @@
-.header{
-    
-    max-width:fit-content;
+.header {
+
+    height: 344px;
+    width: 217px;
 
 
+}
+.sale{
+    font-family: "Inter";
+    font-weight: 600;
+    font-size: 36px;
+}
+.headerimg {
+    width: 892px;
+    height: 344px;
 }

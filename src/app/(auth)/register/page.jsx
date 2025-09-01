@@ -51,30 +51,30 @@ export default function SignUpPage() {
         <div className="min-h-screen bg-white text-black font-poppins">
             {/* Left Side - Image with Text */}
 
-            <div className="flex max-w-7xl mx-auto p-20">
+            <div className="flex  max-w-7xl mx-auto p-20">
                 <div className="hidden md:flex w-1/2 relative ">
                     <img
                         src="/auth.png" // replace with your image in /public folder
                         alt="Furniture"
-                        className="w-xl object-cover"
+                        className="w-[640px] h-[784px] object-cover"
                     />
                 </div>
 
                 {/* Right Side - Signup Form */}
-                <div className="flex flex-col  w-full md:w-1/2 px-8 md:px-16 py-20">
+                <div className="flex flex-col  md:w-1/2 px-8 md:px-16 py-20">
                     <div className="text-center">
-                        <h1 className="text-3xl font-bold mb-6">Create your account</h1>
+                        <h1 className="text-3xl font-semibold  mb-6 text-[48px]">Create an account</h1>
                     </div>
                     {/* Google Sign In (dummy button) */}
                     <button className="w-full py-4 shadow-md rounded-md flex items-center justify-center gap-2 mb-4">
                         <img src="/google.png" alt="Google" className="w-5 h-5" />
-                        Signup with Google
+                        Sign up with Google
                     </button>
 
                     <div className="text-center text-gray-400 mb-6">or</div>
 
                     {/* React Hook Form */}
-                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 ">
                         {/* Name */}
                         <div>
                             <label className="block font-semibold text-gray-700 mb-2 ">
@@ -84,7 +84,7 @@ export default function SignUpPage() {
                                 type="text"
                                 placeholder="Name"
                                 {...register("name", { required: "Name is required" })}
-                                className="w-full  rounded-2xl shadow-md px-4 py-4 outline-none mb-6"
+                                className="w-full  rounded-2xl shadow px-4 py-4 outline-none mb-6"
                             />
                             {errors.name && (
                                 <p className="text-red-500 text-sm mt-1">
@@ -102,7 +102,7 @@ export default function SignUpPage() {
                                 type="email"
                                 placeholder="Email"
                                 {...register("email", { required: "Email is required" })}
-                                className="w-full  rounded-2xl shadow-md px-4 py-4 outline-none mb-6"
+                                className="w-full  rounded-2xl shadow px-4 py-4 outline-none mb-6"
                             />
                             {errors.email && (
                                 <p className="text-red-500 text-sm mt-1">
@@ -120,7 +120,7 @@ export default function SignUpPage() {
                                 type="password"
                                 placeholder="Password"
                                 {...register("password", { required: "Password is required" })}
-                                className="w-full  rounded-2xl shadow-md px-4 py-4 outline-none mb-6"
+                                className="w-full  rounded-2xl shadow px-4 py-4 outline-none mb-6"
                             />
                             {errors.password && (
                                 <p className="text-red-500 text-sm mt-1">
@@ -132,9 +132,9 @@ export default function SignUpPage() {
                         {/* Submit */}
                         <button
                             type="submit"
-                            className="w-full bg-orange-400 text-white py-2 rounded-md hover:bg-orange-500"
+                            className="w-full bg-[#FF8400] text-white py-2 rounded-md hover:bg-orange-500"
                         >
-                            {loading ? "Signing up..." : "Sign Up"}
+                            {loading ? "Signing up..." : "Create Account"}
                         </button>
                     </form>
 
@@ -149,3 +149,4 @@ export default function SignUpPage() {
         </div>
     );
 }
+

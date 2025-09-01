@@ -47,7 +47,6 @@ export default function Navbar() {
                     />
                     <FiSearch className="text-gray-700" />
                 </div>
-
                 {/* Mobile Hamburger */}
                 <button
                     className="md:hidden text-2xl"
