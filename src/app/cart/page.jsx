@@ -61,7 +61,7 @@ export default function CartPage() {
       <div className="flex flex-col md:flex-row justify-between gap-6">
         {/* Left Actions */}
         <div className="flex flex-col gap-4">
-          <button className="border px-4 py-2 rounded text-sm hover:bg-gray-100">
+          <button className="border-2 px-4 py-2 rounded text-sm hover:bg-gray-100">
             Return To Shop
           </button>
 
@@ -71,7 +71,7 @@ export default function CartPage() {
               placeholder="Coupon Code"
               className="border px-3 py-2 rounded w-48"
             />
-            <button className="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">
+            <button className="bg-[#FF8400] text-white px-4 py-2 rounded">
               Apply Coupon
             </button>
           </div>
@@ -92,7 +92,7 @@ export default function CartPage() {
             <span>Total</span>
             <span>${subtotal}</span>
           </div>
-          <button className="w-full bg-orange-500 text-white py-2 mt-4 rounded hover:bg-orange-600">
+          <button className="w-full bg-[#FF8400] text-white py-2 mt-4 rounded">
             Proceed To Checkout
           </button>
         </div>
