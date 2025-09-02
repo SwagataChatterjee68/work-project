@@ -14,7 +14,6 @@ export default function LoginPage() {
         reset
     } = useForm();
     const [loading, setLoading] = useState(false);
-    const [message, setMessage] = useState("");
     const router = useRouter();
 
     const onSubmit = async (data) => {
@@ -59,10 +58,10 @@ export default function LoginPage() {
                 {/* Right Side - Signup Form */}
                 <div className="flex flex-col  w-full md:w-1/2 px-8 md:px-16 py-20">
                     <div >
-                        <h1 className="text-3xl font-bold mb-2">Login to Exclusive</h1>
+                        <h1 className="text-3xl font-bold mb-4">Log in to Exclusive</h1>
                     </div>
                     {/* Google Sign In (dummy button) */}
-                    <button className="w-full   flex  gap-2 mb-4">
+                    <button className="w-full flex  gap-2 mb-10">
 
                         Enter your details below
                     </button>
@@ -77,9 +76,9 @@ export default function LoginPage() {
 
                             <input
                                 type="email"
-                                placeholder="Email"
+                                placeholder="Email or Phone Number"
                                 {...register("email", { required: "Email is required" })}
-                                className="w-full  rounded-2xl shadow-md px-4 py-4 outline-none mb-6"
+                                className="w-full py-2 border-b-2 outline-none border-b-[#27242442] mb-6"
                             />
                             {errors.email && (
                                 <p className="text-red-500 text-sm mt-1">
@@ -95,7 +94,7 @@ export default function LoginPage() {
                                 type="password"
                                 placeholder="Password"
                                 {...register("password", { required: "Password is required" })}
-                                className="w-full  rounded-2xl shadow-md px-4 py-4 outline-none mb-6"
+                                className="w-full py-2 border-b-2 outline-none border-b-[#27242442] mb-6"
                             />
                             {errors.password && (
                                 <p className="text-red-500 text-sm mt-1">
@@ -108,19 +107,17 @@ export default function LoginPage() {
                         <div className="flex justify-between items-center">
                             <button
                                 type="submit"
-                                className="w-32 bg-orange-400 text-white py-2 rounded-md hover:bg-orange-500"
+                                className="w-32 font-light bg-[#FF8400] py-4 rounded hover:bg-orange-500"
                             >
-                                {loading ? "Logging..." : "Login"}
+                                {loading ? "Logging..." : "Log in"}
 
                             </button>
-                            <Link href="/">
-                                Forgot Password
+                            <Link className="text-[#FFA500]" href="/">
+                                Forget Password
                             </Link>
                         </div>
 
                     </form>
-
-
                 </div>
             </div>
         </div>
