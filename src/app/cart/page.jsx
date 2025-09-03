@@ -1,10 +1,9 @@
 
 "use client";
 import { useCart } from "@/context/CartContext";
-
+import { IoIosClose } from "react-icons/io";
 export default function CartPage() {
-  const { cart, updateQuantity } = useCart();
-
+  const { cart, updateQuantity, removeFromCart } = useCart();
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   return (
@@ -27,10 +26,22 @@ export default function CartPage() {
             {cart.map(item => (
               <tr key={item.id} className="border-t">
                 <td className="p-3 flex items-center gap-3">
-                  <img src={item.img} alt={item.title} className="w-14 h-14 object-contain" />
+                  <div className="relative">
+                    <img src={item.img} alt={item.title} className="w-14 h-14 object-contain" />
+                    <div className="relative">
+                      <button
+                        onClick={() => removeFromCart(item.id)}
+                        className="absolute left-0 -top-14 bg-red-600 text-white rounded-full p-1 hover:bg-red-700"
+                      >
+                        <IoIosClose className="text-xl" />
+                      </button>
+                    </div>
+                  </div>
+
                   {item.title}
                 </td>
                 <td className="p-3">${item.price}</td>
+
                 <td className="p-3">
                   <input
                     type="number"
@@ -46,7 +57,7 @@ export default function CartPage() {
           </tbody>
         </table>
       </div>
-         <div className="flex flex-col md:flex-row justify-between gap-6">
+      <div className="flex flex-col md:flex-row justify-between gap-6">
         {/* Left Actions */}
         <div className="flex flex-col gap-4">
           <button className="border-2 px-4 py-2 rounded text-sm hover:bg-gray-100">
