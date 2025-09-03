@@ -1,28 +1,18 @@
+
 "use client";
-import { useState } from "react";
+import { useCart } from "@/context/CartContext";
 
 export default function CartPage() {
-  const [cart, setCart] = useState([
-    { id: 1, name: "Gaming Monitor", price: 1300, quantity: 1, image: "/monitor.png" },
-    { id: 2, name: "Gamepad", price: 550, quantity: 2, image: "/gamepad.png" },
-  ]);
-
-  const updateQuantity = (id, qty) => {
-    setCart(cart.map(item => 
-      item.id === id ? { ...item, quantity: qty } : item
-    ));
-  };
+  const { cart, updateQuantity } = useCart();
 
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
-      {/* Breadcrumb */}
       <div className="text-sm text-gray-500 mb-6">
         Home / <span className="text-black">Cart</span>
       </div>
 
-      {/* Cart Table */}
       <div className="w-full border rounded-lg overflow-hidden mb-8">
         <table className="w-full text-left">
           <thead className="bg-gray-100 text-sm font-medium">
@@ -37,8 +27,8 @@ export default function CartPage() {
             {cart.map(item => (
               <tr key={item.id} className="border-t">
                 <td className="p-3 flex items-center gap-3">
-                  <img src={item.image} alt={item.name} className="w-14 h-14 object-contain" />
-                  {item.name}
+                  <img src={item.img} alt={item.title} className="w-14 h-14 object-contain" />
+                  {item.title}
                 </td>
                 <td className="p-3">${item.price}</td>
                 <td className="p-3">
@@ -56,9 +46,7 @@ export default function CartPage() {
           </tbody>
         </table>
       </div>
-
-      {/* Bottom Actions */}
-      <div className="flex flex-col md:flex-row justify-between gap-6">
+         <div className="flex flex-col md:flex-row justify-between gap-6">
         {/* Left Actions */}
         <div className="flex flex-col gap-4">
           <button className="border-2 px-4 py-2 rounded text-sm hover:bg-gray-100">
