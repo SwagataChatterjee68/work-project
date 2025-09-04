@@ -18,11 +18,11 @@ const Category = () => {
         <div>{/* Browse by Category */}
             <div className="mb-10">
                 <h2 className="text-lg font-bold mb-4">Browse By Category</h2>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-10">
                     {category.map((cat) => (
                         <div
                             key={cat.id}
-                            className={`flex flex-col items-center justify-center border rounded-md p-6 cursor-pointer transition ${cat.active
+                            className={`flex flex-col items-center justify-center border rounded-md py-10 px-4 cursor-pointer transition ${cat.active
                                 ? "bg-[#FF8400] text-white border-orange-500"
                                 : "hover:border-orange-500"
                                 }`}

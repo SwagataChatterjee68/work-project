@@ -19,7 +19,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen py-10">
+    <div className="bg-gray-50 min-h-screen py-32">
       <div className="max-w-6xl mx-auto px-4">
         {/* Breadcrumb */}
         <p className="text-sm text-gray-500 mb-6">

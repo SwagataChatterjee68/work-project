@@ -103,7 +103,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen py-44">
+    <div className="flex flex-col min-h-screen py-36">
       {/* Hero Section */}
       <section className={`${styles.header}max-w-7xl mx-auto`}>
         <div className="flex gap-10">

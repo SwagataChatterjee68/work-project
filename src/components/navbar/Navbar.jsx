@@ -16,7 +16,7 @@ export default function Navbar() {
   const wishlistCount = wishlist.length;
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-white shadow">
+    <header className="fixed top-0 left-0 w-full z-50">
       {/* Top Black Bar */}
       <div className="bg-black text-white text-sm flex items-center justify-center relative py-2">
         <p className="text-center text-xs sm:text-sm">
@@ -31,7 +31,7 @@ export default function Navbar() {
 
       {/* Main Navbar */}
       <nav
-        className={`${styles.mainNav} flex items-center justify-between px-6 py-2`}
+        className={`${styles.mainNav} flex items-center justify-between px-6 py-4`}
       >
         <div className="text-lg font-bold">LOGO</div>
 
