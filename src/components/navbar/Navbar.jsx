@@ -1,22 +1,22 @@
-// components/Navbar.js
 "use client";
 import Link from "next/link";
 import { useState } from "react";
 import { FiSearch, FiMenu, FiX } from "react-icons/fi";
-import styles from '@/components/navbar/navbar.module.css';
+import styles from "@/components/navbar/navbar.module.css";
 import { FaRegHeart, FaRegUser } from "react-icons/fa6";
 import { IoCartOutline } from "react-icons/io5";
-import { useCart } from "@/context/CartContext"; 
+import { useCart } from "@/context/CartContext";
+import { useWishlist } from "@/context/WishlistContext";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { cart } = useCart();
-
-  // total quantity (not just number of items)
-  const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+  const { wishlist } = useWishlist();
+  const cartCount = cart.length;
+  const wishlistCount = wishlist.length;
 
   return (
-    <header>
+    <header className="fixed top-0 left-0 w-full z-50 bg-white shadow">
       {/* Top Black Bar */}
       <div className="bg-black text-white text-sm flex items-center justify-center relative py-2">
         <p className="text-center text-xs sm:text-sm">
@@ -30,14 +30,27 @@ export default function Navbar() {
       </div>
 
       {/* Main Navbar */}
-      <nav className={`${styles.mainNav} flex items-center justify-between px-6 py-4`}>
+      <nav
+        className={`${styles.mainNav} flex items-center justify-between px-6 py-2`}
+      >
         <div className="text-lg font-bold">LOGO</div>
 
         <ul className="hidden md:flex space-x-8 text-gray-800 font-medium">
-          <Link href="/" className="cursor-pointer hover:text-black">Home</Link>
-          <Link href="/contact" className="cursor-pointer hover:text-black">Contact</Link>
-          <Link href="/about" className="cursor-pointer hover:text-black">About</Link>
-          <Link href="/register" className="cursor-pointer border-b-2 border-black">Sign Up</Link>
+          <Link href="/" className="cursor-pointer hover:text-black">
+            Home
+          </Link>
+          <Link href="/contact" className="cursor-pointer hover:text-black">
+            Contact
+          </Link>
+          <Link href="/about" className="cursor-pointer hover:text-black">
+            About
+          </Link>
+          <Link
+            href="/register"
+            className="cursor-pointer border-b-2 border-black"
+          >
+            Sign Up
+          </Link>
         </ul>
 
         {/* Search + Icons */}
@@ -51,7 +64,14 @@ export default function Navbar() {
             <FiSearch className="text-gray-700" />
           </div>
 
-          <FaRegHeart className="text-xl" />
+          <Link href="/wishlist" className="relative">
+            <FaRegHeart className="text-xl" />
+            {wishlistCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                {wishlistCount}
+              </span>
+            )}
+          </Link>
 
           {/* Cart with badge */}
           <Link href="/cart" className="relative">
@@ -63,7 +83,17 @@ export default function Navbar() {
             )}
           </Link>
 
-          <FaRegUser className="text-xl" />
+          <Link href="/account" className="relative">
+            <FaRegUser className="text-xl" />
+            {/* {cartCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                {cartCount}
+              </span>
+            )} */}
+          </Link>
+
+
+          
         </div>
 
         {/* Mobile Hamburger */}
@@ -94,8 +124,6 @@ export default function Navbar() {
               <FiSearch className="text-gray-700" />
             </div>
             <FaRegHeart className="text-xl" />
-
-            {/* Cart for mobile with badge */}
             <Link href="/cart" className="relative">
               <IoCartOutline className="text-2xl" />
               {cartCount > 0 && (
@@ -104,7 +132,6 @@ export default function Navbar() {
                 </span>
               )}
             </Link>
-
             <FaRegUser className="text-xl" />
           </div>
         </div>

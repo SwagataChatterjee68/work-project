@@ -1,14 +1,18 @@
 
 import { CiHeadphones } from "react-icons/ci";
 import { IoIosPhonePortrait } from "react-icons/io";
+import { HiOutlineComputerDesktop } from "react-icons/hi2";
+import { TbDeviceWatchStats } from "react-icons/tb";
+import { AiOutlineCamera } from "react-icons/ai";
+import { LuGamepad } from "react-icons/lu";
 const Category = () => {
     const category = [
         { id: 1, name: "Phones", icon: <IoIosPhonePortrait /> },
-        { id: 2, name: "Computers", icon: "computer" },
-        { id: 3, name: "SmartWatch", icon: "watch" },
-        { id: 4, name: "Camera", icon: "camera", active: true },
+        { id: 2, name: "Computers", icon: <HiOutlineComputerDesktop/> },
+        { id: 3, name: "SmartWatch", icon: <TbDeviceWatchStats/>},
+        { id: 4, name: "Camera", icon: <AiOutlineCamera/>, active: true  },
         { id: 5, name: "HeadPhones", icon: <CiHeadphones /> },
-        { id: 6, name: "Gaming", icon: "game" },
+        { id: 6, name: "Gaming", icon: <LuGamepad/>},
     ];
     return (
         <div>{/* Browse by Category */}
@@ -23,7 +27,7 @@ const Category = () => {
                                 : "hover:border-orange-500"
                                 }`}
                         >
-                            <span className="text-3xl">{cat.icon}</span>
+                            <span className="text-4xl">{cat.icon}</span>
                             <p className="mt-2 text-sm font-medium">{cat.name}</p>
                         </div>
                     ))}

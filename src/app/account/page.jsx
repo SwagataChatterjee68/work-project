@@ -21,7 +21,7 @@ export default function AccountPage() {
         console.log("Form Submitted:", formData);
     };
     return (
-        <div className="max-w-6xl mx-auto px-6 py-10">
+        <div className="max-w-6xl mx-auto px-6 py-32">
             {/* Breadcrumb */}
             <div className="text-sm text-gray-500 mb-6">
                 Home / <span className="text-black">My Account</span>

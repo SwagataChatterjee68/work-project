@@ -1,4 +1,4 @@
-// app/signup/page.js (Next.js App Router with JS)
+
 "use client";
 import Link from "next/link";
 import { useState } from "react";
@@ -49,23 +49,21 @@ export default function SignUpPage() {
 
     return (
         <div className="min-h-screen bg-white text-black font-poppins">
-            {/* Left Side - Image with Text */}
 
             <div className="flex  max-w-7xl mx-auto p-20">
                 <div className="hidden md:flex w-1/2 relative ">
                     <img
-                        src="/auth.png" // replace with your image in /public folder
+                        src="/auth.png"
                         alt="Furniture"
                         className="w-[640px] h-[784px] object-cover"
                     />
                 </div>
 
-                {/* Right Side - Signup Form */}
                 <div className="flex flex-col  md:w-1/2 px-8 md:px-16 py-20">
                     <div className="text-center">
                         <h1 className="text-3xl font-semibold  mb-6 text-[48px]">Create an account</h1>
                     </div>
-                    {/* Google Sign In (dummy button) */}
+
                     <button className="w-full py-4 shadow-md rounded-md flex items-center justify-center gap-2 mb-4">
                         <img src="/google.png" alt="Google" className="w-5 h-5" />
                         Sign up with Google
@@ -73,7 +71,7 @@ export default function SignUpPage() {
 
                     <div className="text-center text-gray-400 mb-6">or</div>
 
-                    {/* React Hook Form */}
+                    
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 ">
                         {/* Name */}
                         <div>

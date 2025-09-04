@@ -1,13 +1,20 @@
 
 "use client";
 import { useCart } from "@/context/CartContext";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { IoIosClose } from "react-icons/io";
 export default function CartPage() {
+  const router=useRouter()
   const { cart, updateQuantity, removeFromCart } = useCart();
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
+  const handleClick=()=>{
+    router.push("/")
+  }
+
   return (
-    <div className="max-w-6xl mx-auto px-6 py-10">
+    <div className="max-w-6xl mx-auto px-6 py-32">
       <div className="text-sm text-gray-500 mb-6">
         Home / <span className="text-black">Cart</span>
       </div>
@@ -60,7 +67,7 @@ export default function CartPage() {
       <div className="flex flex-col md:flex-row justify-between gap-6">
         {/* Left Actions */}
         <div className="flex flex-col gap-4">
-          <button className="border-2 px-4 py-2 rounded text-sm hover:bg-gray-100">
+          <button onClick={handleClick} className="border-2 px-4 py-2 rounded text-sm hover:bg-gray-100">
             Return To Shop
           </button>
 

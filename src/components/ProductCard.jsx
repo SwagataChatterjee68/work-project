@@ -7,15 +7,15 @@ export default function ProductCard({ image, title, price, discount }) {
       {/* Discount Badge */}
       {discount && (
         <span className="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded">
-          -{discount}%
+          -{discount}
         </span>
       )}
 
       {/* Image */}
       <div className="w-full h-48 flex items-center justify-center bg-gray-100">
         <Image
-          src={image}
-          alt={title}
+          src={image && image.trim() !== "" ? image : "/placeholder.png"}
+          alt={title || "Product image"}
           width={150}
           height={150}
           className="object-contain"
@@ -29,7 +29,7 @@ export default function ProductCard({ image, title, price, discount }) {
       </div>
 
       {/* Add to Cart - appears only on hover */}
-      <button className="absolute bottom-0 left-0 w-full bg-black text-white py-2 text-sm opacity-0 group-hover:opacity-100 transition">
+      <button className=" w-full bg-black text-white py-2 text-sm  transition">
         Add to Cart
       </button>
     </div>

@@ -1,9 +1,10 @@
 "use client";
-import { FaStar } from "react-icons/fa";
+import { FaStar, FaHeart } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
 import { useCart } from "@/context/CartContext";
 import styles from "@/app/ui/home.module.css";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
+import { useWishlist } from "@/context/WishlistContext";
 
 const FlashSale = () => {
     const [timeLeft, setTimeLeft] = useState({
@@ -13,7 +14,7 @@ const FlashSale = () => {
         seconds: 56,
     });
 
-    // Set countdown target (e.g., 3 days from now)
+    // Countdown Timer
     useEffect(() => {
         const timer = setInterval(() => {
             setTimeLeft((prev) => {
@@ -39,7 +40,10 @@ const FlashSale = () => {
 
         return () => clearInterval(timer);
     }, []);
-    const { cart, addToCart } = useCart();
+
+    const { addToCart } = useCart();
+    const { wishlist, addToWishlist, removeFromWishlist } = useWishlist();
+
     const product = [
         {
             id: 1,
@@ -82,6 +86,7 @@ const FlashSale = () => {
             img: "/saleproduct4.png",
         },
     ];
+
     function TimeBox({ label, value }) {
         return (
             <div className="flex flex-col items-center">
@@ -110,53 +115,64 @@ const FlashSale = () => {
 
                 {/* Products */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-                    {product.map((item) => (
-                        <div
-                            key={item.id}
-                            className="relative bg-[#FDFBD44A] rounded-lg shadow hover:shadow-lg transition p-4"
-                        >
-                            {/* Discount Badge */}
-                            <span className="absolute top-3 left-3 bg-[#FFA500] text-white text-xs px-2 py-1 rounded">
-                                {item.discount}
-                            </span>
-                            {/* Wishlist */}
-                            <button className="absolute top-3 right-3 text-gray-600 hover:text-red-500">
-                                <FiHeart size={18} />
-                            </button>
+                    {product.map((item) => {
+                        const isWishlisted = wishlist.some((w) => w.id === item.id);
 
-                            {/* Image */}
-                            <img
-                                src={item.img}
-                                alt={item.title}
-                                className="w-full h-40 object-contain mb-3"
-                            />
-
-                            {/* Info */}
-                            <h3 className="font-medium text-sm mb-2">{item.title}</h3>
-                            <div className="flex items-center gap-2 mb-2">
-                                <p className="text-[#FFA500] font-bold">${item.price}</p>
-                                <p className="text-gray-400 line-through text-sm">
-                                    ${item.oldPrice}
-                                </p>
-                            </div>
-                            <div className="flex items-center gap-1 text-[#FFA500]  text-sm">
-                                {Array.from({ length: item.rating }).map((_, i) => (
-                                    <FaStar key={i} />
-                                ))}
-                                <span className="text-gray-600 text-xs ml-2">
-                                    ({item.reviews})
-                                </span>
-                            </div>
-
-                            {/* Add to Cart */}
-                            <button
-                                onClick={() => addToCart(item)}
-                                className="mt-3 w-full bg-black text-white py-2 rounded text-sm hover:bg-gray-800 transition"
+                        return (
+                            <div
+                                key={item.id}
+                                className="relative bg-[#FDFBD44A] rounded-lg shadow hover:shadow-lg transition p-4"
                             >
-                                Add To Cart
-                            </button>
-                        </div>
-                    ))}
+                                {/* Discount Badge */}
+                                <span className="absolute top-3 left-3 bg-[#FFA500] text-white text-xs px-2 py-1 rounded">
+                                    {item.discount}
+                                </span>
+
+                                {/* Wishlist Button */}
+                                <button
+                                    onClick={() =>
+                                        isWishlisted ? removeFromWishlist(item.id) : addToWishlist(item)
+                                    }
+                                    className="absolute top-3 right-3 text-gray-600 hover:text-red-500"
+                                >
+                                    {isWishlisted ? (
+                                        <FaHeart size={18} className="text-red-500" />
+                                    ) : (
+                                        <FiHeart size={18} />
+                                    )}
+                                </button>
+
+                                {/* Image */}
+                                <img
+                                    src={item.img}
+                                    alt={item.title}
+                                    className="w-full h-40 object-contain mb-3"
+                                />
+                                <button
+                                    onClick={() => addToCart(item)}
+                                    className="w-full bg-black text-white py-2 flex justify-center items-center gap-2 text-sm hover:bg-gray-800 transition"
+                                >
+                                    Add To Cart
+                                </button>
+
+                                {/* Info */}
+                                <h3 className="font-medium text-sm mb-2">{item.title}</h3>
+                                <div className="flex items-center gap-2 mb-2">
+                                    <p className="text-[#FFA500] font-bold">${item.price}</p>
+                                    <p className="text-gray-400 line-through text-sm">${item.oldPrice}</p>
+                                </div>
+                                <div className="flex items-center gap-1 text-[#FFA500] text-sm">
+                                    {Array.from({ length: item.rating }).map((_, i) => (
+                                        <FaStar key={i} />
+                                    ))}
+                                    <span className="text-gray-600 text-xs ml-2">
+                                        ({item.reviews})
+                                    </span>
+                                </div>
+
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </section>

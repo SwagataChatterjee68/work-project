@@ -1,62 +1,18 @@
-// app/page.tsx  (if using Next.js 13+ App Router)
-// or pages/index.tsx (if using Pages Router)
+
 "use client";
 import Link from "next/link";
 import styles from "@/app/ui/home.module.css";
 import { useState } from "react";
-import { FaStar } from "react-icons/fa";
-import { FaHeart } from "react-icons/fa";
+import { FaStar, FaHeart } from "react-icons/fa";
+import { FiHeart } from "react-icons/fi";
 import Image from "next/image";
-import Wishlist from "@/components/Wishlist";
-import JustForYou from "@/components/JustForYou";
 import FlashSale from "@/components/FlashSale";
 import Category from "@/components/Category";
 import BestSeller from "@/components/BestSeller";
-export default function Home() {
+import { useWishlist } from "@/context/WishlistContext";
+import { useCart } from "@/context/CartContext";
 
-  // Dummy products
-  const products = [
-    {
-      id: 1,
-      title: "HAVIT HV-G92 Gamepad",
-      price: 120,
-      oldPrice: 160,
-      discount: "-40%",
-      rating: 4,
-      reviews: 88,
-      img: "saleproduct1.png",
-    },
-    {
-      id: 2,
-      title: "AK-900 Wired Keyboard",
-      price: 960,
-      oldPrice: 1160,
-      discount: "-35%",
-      rating: 4,
-      reviews: 75,
-      img: "saleproduct2.png",
-    },
-    {
-      id: 3,
-      title: "IPS LCD Gaming Monitor",
-      price: 370,
-      oldPrice: 400,
-      discount: "-30%",
-      rating: 5,
-      reviews: 99,
-      img: "/saleproduct3.png",
-    },
-    {
-      id: 4,
-      title: "S-Series Comfort Chair",
-      price: 375,
-      oldPrice: 400,
-      discount: "-25%",
-      rating: 5,
-      reviews: 99,
-      img: "/saleproduct4.png",
-    },
-  ];
+export default function Home() {
 
   const categories = [
     { name: "Woman’s Fashion", href: "/" },
@@ -70,81 +26,84 @@ export default function Home() {
     { name: "Health & Beauty", href: "/" },
   ];
   const [current, setCurrent] = useState(0);
+  const { addToCart } = useCart();
+  const { addToWishlist, wishlist, removeFromWishlist } = useWishlist();
+
   const images = [
     { id: 1, src: "/header.png", alt: "Image 1" },
     { id: 2, src: "/header2.avif", alt: "Image 2" },
     { id: 3, src: "/images/img3.jpg", alt: "Image 3" },
   ];
 
-  const product = [
+  const products = [
     {
-      id: 1,
-      title: "Bleed Dry Dog Food",
+      id: 9,
+      title: "Breed Dry Dog Food",
       price: 100,
       rating: 4,
-      reviews: 20,
-      img: "/products/dogfood.png",
+      reviews: 35,
+      img: "/dogfood.png",
     },
     {
-      id: 2,
+      id: 10,
       title: "CANON EOS DSLR Camera",
       price: 360,
       rating: 5,
-      reviews: 123,
-      img: "/products/camera.png",
+      reviews: 95,
+      img: "/camera.png",
     },
     {
-      id: 3,
+      id: 11,
       title: "ASUS FHD Gaming Laptop",
       price: 700,
       rating: 5,
-      reviews: 55,
-      img: "/products/laptop.png",
+      reviews: 325,
+      img: "/laptop.png",
     },
     {
-      id: 4,
-      title: "Curelology Product Set",
+      id: 12,
+      title: "Curology Product Set",
       price: 500,
-      rating: 5,
-      reviews: 105,
-      img: "/products/cream.png",
+      rating: 4,
+      reviews: 145,
+      img: "/curology.png",
     },
     {
-      id: 5,
+      id: 13,
       title: "Kids Electric Car",
-      price: 150,
+      price: 100,
       rating: 4,
-      reviews: 40,
-      img: "/products/car.png",
+      reviews: 65,
+      img: "/car.png",
     },
     {
-      id: 6,
-      title: "Soccer Shoes",
-      price: 120,
+      id: 14,
+      title: "Soccer Cleats",
+      price: 360,
       rating: 4,
-      reviews: 60,
-      img: "/products/shoes.png",
+      reviews: 95,
+      img: "/shoes.png",
     },
     {
-      id: 7,
-      title: "ASUS FHD Gaming Laptop",
+      id: 15,
+      title: "ASUS ROG Gaming Laptop",
       price: 700,
       rating: 5,
-      reviews: 55,
-      img: "/products/laptop.png",
+      reviews: 325,
+      img: "/gaminglaptop.png",
     },
     {
-      id: 8,
-      title: "Wireless Game Controller",
-      price: 90,
+      id: 16,
+      title: "GP11 Shooter USB Gamepad",
+      price: 500,
       rating: 4,
-      reviews: 46,
-      img: "/products/gamepad.png",
+      reviews: 145,
+      img: "/gamepad.png",
     },
   ];
 
   return (
-    <div className="flex flex-col min-h-screen py-10">
+    <div className="flex flex-col min-h-screen py-44">
       {/* Hero Section */}
       <section className={`${styles.header}max-w-7xl mx-auto`}>
         <div className="flex gap-10">
@@ -171,7 +130,7 @@ export default function Home() {
         <Category />
 
         {/* Best Selling Products */}
-      <BestSeller/>
+        <BestSeller />
       </div>
       <div className="w-full px-6 py-10">
         {/* Hero Banner */}
@@ -203,58 +162,82 @@ export default function Home() {
         </div>
 
         {/* Explore Our Products */}
-        <div className="mb-8">
-          <p className="text-orange-500 font-medium">Our Products</p>
-          <h2 className="text-xl font-bold">Explore Our Products</h2>
-        </div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-          {product.map((item) => (
-            <div
-              key={item.id}
-              className="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4 group"
-            >
-              {/* Wishlist */}
-              <button className="absolute top-3 right-3 text-gray-600 hover:text-red-500">
-                <FaHeart size={18} />
-              </button>
+        <section className="max-w-7xl mx-auto px-6 py-10">
+          {/* Section Header */}
+          <div className="mb-8">
+            <p className="text-[#FF8400] font-semibold text-sm">Our Products</p>
+            <h2 className="text-2xl font-bold">Explore Our Products</h2>
+          </div>
 
-              {/* Product Image */}
-              <img
-                src={item.img}
-                alt={item.title}
-                className="w-full h-40 object-contain mb-3"
-              />
+          {/* Product Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+            {products.map((item) => {
+              const isWishlisted = wishlist.some((w) => w.id === item.id);
 
-              {/* Product Info */}
-              <h3 className="font-medium text-sm mb-2">{item.title}</h3>
-              <p className="text-red-500 font-bold mb-1">${item.price}</p>
+              return (
+                <div
+                  key={item.id}
+                  className="relative bg-white rounded-lg shadow hover:shadow-lg transition p-4"
+                >
+                  {/* Wishlist Toggle */}
+                  <button
+                    onClick={() =>
+                      isWishlisted
+                        ? removeFromWishlist(item.id)
+                        : addToWishlist(item)
+                    }
+                    className="absolute top-3 right-3 text-gray-600 hover:text-red-500"
+                  >
+                    {isWishlisted ? (
+                      <FaHeart size={18} className="text-red-500" />
+                    ) : (
+                      <FiHeart size={18} />
+                    )}
+                  </button>
 
-              {/* Ratings */}
-              <div className="flex items-center gap-1 text-yellow-500 text-sm">
-                {Array.from({ length: item.rating }).map((_, i) => (
-                  <FaStar key={i} />
-                ))}
-                <span className="text-gray-600 text-xs ml-2">
-                  ({item.reviews})
-                </span>
-              </div>
+                  {/* Image */}
+                  <img
+                    src={item.img}
+                    alt={item.title}
+                    className="w-full h-40 object-contain mb-3"
+                  />
+                  <button
+                    onClick={() => addToCart(item)}
+                    className="w-full bg-black text-white py-2 flex justify-center items-center gap-2 text-sm hover:bg-gray-800 transition"
+                  >
+                    Add To Cart
+                  </button>
 
-              {/* Add to Cart (hover only) */}
-              <button className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[90%] bg-black text-white py-2 rounded text-sm opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition duration-300">
-                Add To Cart
-              </button>
-            </div>
-          ))}
-        </div>
 
-        {/* View All button */}
-        <div className="flex justify-center mt-8">
-          <button className="bg-orange-500 text-white px-6 py-2 rounded hover:bg-orange-600">
-            View All Products
-          </button>
-        </div>
+                  {/* Title */}
+                  <h3 className="font-medium text-sm mb-2">{item.title}</h3>
+
+                  {/* Price */}
+                  <p className="text-black font-bold mb-2">${item.price}</p>
+
+                  {/* Rating */}
+                  <div className="flex items-center text-yellow-500 text-sm mb-3">
+                    {Array.from({ length: item.rating }).map((_, i) => (
+                      <FaStar key={i} />
+                    ))}
+                    <span className="text-gray-600 text-xs ml-2">
+                      ({item.reviews})
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* View All Button */}
+          <div className="flex justify-center mt-10">
+            <button className="bg-[#FF8400] text-white px-6 py-2 rounded hover:bg-orange-600">
+              View All Products
+            </button>
+          </div>
+        </section>
+
       </div>
       <section className="max-w-7xl mx-auto px-6 py-12">
         {/* Heading */}
@@ -358,18 +341,9 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <Wishlist />
-      <JustForYou />
     </div>
   );
 }
-function TimeBox({ label, value }) {
-  return (
-    <div className="flex flex-col items-center">
-      <span className="text-lg font-bold">{String(value).padStart(2, "0")}</span>
-      <span className="text-xs text-gray-500">{label}</span>
-    </div>
-  );
-}
+
 
 

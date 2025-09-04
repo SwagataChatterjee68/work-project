@@ -1,4 +1,4 @@
-// app/signup/page.js (Next.js App Router with JS)
+
 "use client";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
@@ -44,31 +44,25 @@ export default function LoginPage() {
 
     return (
         <div className="min-h-screen bg-white text-black font-poppins">
-            {/* Left Side - Image with Text */}
 
             <div className="flex max-w-7xl mx-auto p-20">
                 <div className="hidden md:flex w-1/2 relative ">
                     <img
-                        src="/auth.png" // replace with your image in /public folder
+                        src="/auth.png"
                         alt="Furniture"
                         className="w-xl object-cover"
                     />
                 </div>
 
-                {/* Right Side - Signup Form */}
                 <div className="flex flex-col  w-full md:w-1/2 px-8 md:px-16 py-20">
                     <div >
                         <h1 className="text-3xl font-bold mb-4">Log in to Exclusive</h1>
                     </div>
-                    {/* Google Sign In (dummy button) */}
                     <button className="w-full flex  gap-2 mb-10">
 
                         Enter your details below
                     </button>
 
-
-
-                    {/* React Hook Form */}
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
 
                         {/* Email */}
