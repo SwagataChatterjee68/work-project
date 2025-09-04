@@ -23,7 +23,7 @@ export default function JustForYou() {
       price: 750,
       rating: 5,
       reviews: 65,
-      img: "/monitor.png",
+      img: "/saleproduct3.png",
     },
     {
       id: 3,
@@ -31,7 +31,7 @@ export default function JustForYou() {
       price: 750,
       rating: 5,
       reviews: 65,
-      img: "/gamepad.png",
+      img: "/saleproduct1.png",
     },
     {
       id: 4,
@@ -39,7 +39,7 @@ export default function JustForYou() {
       price: 750,
       rating: 5,
       reviews: 65,
-      img: "/keyboard.png",
+      img: "/saleproduct2.png",
     },
   ];
 
@@ -81,7 +81,7 @@ export default function JustForYou() {
               />
               <button
               onClick={() => addToCart(item)}
-              className="w-full bg-black text-white py-2 flex justify-center items-center gap-2 text-sm hover:bg-gray-800 transition"
+              className="w-full cursor-pointer bg-black text-white py-2 flex justify-center items-center gap-2 text-sm hover:bg-gray-800 transition"
             >
               <BsCartPlus className="text-2xl" /> Add To Cart
             </button>

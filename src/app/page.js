@@ -11,6 +11,7 @@ import Category from "@/components/Category";
 import BestSeller from "@/components/BestSeller";
 import { useWishlist } from "@/context/WishlistContext";
 import { useCart } from "@/context/CartContext";
+import { RiCustomerServiceLine } from "react-icons/ri";
 
 export default function Home() {
 
@@ -42,7 +43,7 @@ export default function Home() {
       price: 100,
       rating: 4,
       reviews: 35,
-      img: "/dogfood.png",
+      img: "/dogfood.jpg",
     },
     {
       id: 10,
@@ -204,7 +205,7 @@ export default function Home() {
                   />
                   <button
                     onClick={() => addToCart(item)}
-                    className="w-full bg-black text-white py-2 flex justify-center items-center gap-2 text-sm hover:bg-gray-800 transition"
+                    className="w-full cursor-pointer bg-black text-white py-2 flex justify-center items-center gap-2 text-sm hover:bg-gray-800 transition"
                   >
                     Add To Cart
                   </button>
@@ -251,73 +252,73 @@ export default function Home() {
           {/* Card 1 */}
           <div className="relative group">
             <Image
-              src="/ps5.jpg"
-              alt="PlayStation 5"
+              src="/play.png"
+              alt="Playstation 5"
               width={500}
               height={500}
               className="rounded-lg w-full h-64 object-cover"
             />
-            <div className="absolute bottom-4 left-4 text-white">
+            {/* <div className="absolute bottom-4 left-4 text-white">
               <h3 className="font-semibold">PlayStation 5</h3>
               <p className="text-sm">Black and White version of PS5</p>
               <button className="mt-2 bg-white text-black px-3 py-1 text-sm rounded">
                 Shop Now
               </button>
-            </div>
+            </div> */}
           </div>
 
           {/* Card 2 */}
           <div className="relative group">
             <Image
-              src="/women.jpg"
+              src="/women.png"
               alt="Women's Collections"
               width={500}
               height={500}
               className="rounded-lg w-full h-64 object-cover"
             />
-            <div className="absolute bottom-4 left-4 text-white">
+            {/* <div className="absolute bottom-4 left-4 text-white">
               <h3 className="font-semibold">Women&apos;s Collections</h3>
               <p className="text-sm">Give your wardrobe vibe</p>
               <button className="mt-2 bg-white text-black px-3 py-1 text-sm rounded">
                 Shop Now
               </button>
-            </div>
+            </div> */}
           </div>
 
           {/* Card 3 */}
           <div className="relative group">
             <Image
-              src="/speaker.jpg"
+              src="/speaker.png"
               alt="Speakers"
               width={500}
               height={500}
               className="rounded-lg w-full h-64 object-cover"
             />
-            <div className="absolute bottom-4 left-4 text-white">
+            {/* <div className="absolute bottom-4 left-4 text-white">
               <h3 className="font-semibold">Speakers</h3>
               <p className="text-sm">Amazon wireless speakers</p>
               <button className="mt-2 bg-white text-black px-3 py-1 text-sm rounded">
                 Shop Now
               </button>
-            </div>
+            </div> */}
           </div>
 
           {/* Card 4 */}
           <div className="relative group">
             <Image
-              src="/perfume.jpg"
+              src="/perfume.png"
               alt="Perfume"
               width={500}
               height={500}
               className="rounded-lg w-full h-64 object-cover"
             />
-            <div className="absolute bottom-4 left-4 text-white">
+            {/* <div className="absolute bottom-4 left-4 text-white">
               <h3 className="font-semibold">Perfume</h3>
               <p className="text-sm">GUCCI INTENSE OUD EDP</p>
               <button className="mt-2 bg-white text-black px-3 py-1 text-sm rounded">
                 Shop Now
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -330,6 +331,7 @@ export default function Home() {
             </p>
           </div>
           <div>
+            <RiCustomerServiceLine />
             <h3 className="font-bold text-lg">24/7 Customer Service</h3>
             <p className="text-gray-500 text-sm">Friendly 24/7 customer support</p>
           </div>

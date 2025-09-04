@@ -150,7 +150,7 @@ const FlashSale = () => {
                                 />
                                 <button
                                     onClick={() => addToCart(item)}
-                                    className="w-full bg-black text-white py-2 flex justify-center items-center gap-2 text-sm hover:bg-gray-800 transition"
+                                    className="w-full bg-black text-white py-2 flex justify-center items-center gap-2 text-sm hover:bg-gray-800 transition cursor-pointer"
                                 >
                                     Add To Cart
                                 </button>

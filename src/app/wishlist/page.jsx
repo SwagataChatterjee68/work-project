@@ -63,7 +63,7 @@ export default function WishlistPage() {
                                 />
                                 <button
                                     onClick={() => addToCart(item)}
-                                    className="w-full bg-black text-white py-2 flex justify-center items-center gap-2 text-sm hover:bg-gray-800 transition"
+                                    className="w-full cursor-pointer bg-black text-white py-2 flex justify-center items-center gap-2 text-sm hover:bg-gray-800 transition"
                                 >
                                     <BsCartPlus className="text-2xl" /> Add To Cart
                                 </button>
