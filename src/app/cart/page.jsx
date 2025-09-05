@@ -1,106 +1,103 @@
-
 "use client";
 import { useCart } from "@/context/CartContext";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { IoIosClose } from "react-icons/io";
+import "./cart.css";
+
 export default function CartPage() {
-  const router=useRouter()
+  const router = useRouter();
   const { cart, updateQuantity, removeFromCart } = useCart();
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
-  const handleClick=()=>{
-    router.push("/")
-  }
+  const handleClick = () => {
+    router.push("/");
+  };
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-32">
-      <div className="text-sm text-gray-500 mb-6">
-        Home / <span className="text-black">Cart</span>
+    <div className="cart-container">
+      {/* Breadcrumb */}
+      <div className="breadcrumb">
+        Home / <span className="active">Cart</span>
       </div>
 
-      <div className="w-full border rounded-lg overflow-hidden mb-8">
-        <table className="w-full text-left">
-          <thead className="bg-gray-100 text-sm font-medium">
+      {/* Cart Table */}
+      <div className="cart-table-wrapper">
+        <table className="cart-table">
+          <thead>
             <tr>
-              <th className="p-3">Product</th>
-              <th className="p-3">Price</th>
-              <th className="p-3">Quantity</th>
-              <th className="p-3">Subtotal</th>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Subtotal</th>
             </tr>
           </thead>
           <tbody>
-            {cart.map(item => (
-              <tr key={item.id} className="border-t">
-                <td className="p-3 flex items-center gap-3">
-                  <div className="relative">
-                    <img src={item.img} alt={item.title} className="w-14 h-14 object-contain" />
-                    <div className="relative">
+            {cart.map((item) => (
+              <tr key={item.id}>
+                <td className="product-cell">
+                  <div className="product-info">
+                    <div className="product-img-wrapper">
+                      <img src={item.img} alt={item.title} className="product-img" />
                       <button
                         onClick={() => removeFromCart(item.id)}
-                        className="absolute left-0 -top-14 bg-red-600 text-white rounded-full p-1 hover:bg-red-700"
+                        className="remove-btn"
                       >
-                        <IoIosClose className="text-xl" />
+                        <IoIosClose />
                       </button>
                     </div>
+                    <span>{item.title}</span>
                   </div>
-
-                  {item.title}
                 </td>
-                <td className="p-3">${item.price}</td>
-
-                <td className="p-3">
+                <td>${item.price}</td>
+                <td>
                   <input
                     type="number"
                     min="1"
                     value={item.quantity}
-                    onChange={(e) => updateQuantity(item.id, parseInt(e.target.value))}
-                    className="w-16 border rounded text-center"
+                    onChange={(e) =>
+                      updateQuantity(item.id, parseInt(e.target.value))
+                    }
+                    className="quantity-input"
                   />
                 </td>
-                <td className="p-3">${item.price * item.quantity}</td>
+                <td>${item.price * item.quantity}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <div className="flex flex-col md:flex-row justify-between gap-6">
+
+      {/* Actions + Totals */}
+      <div className="cart-actions">
         {/* Left Actions */}
-        <div className="flex flex-col gap-4">
-          <button onClick={handleClick} className="border-2 px-4 py-2 rounded text-sm hover:bg-gray-100">
+        <div className="left-actions">
+          <button onClick={handleClick} className="return-btn">
             Return To Shop
           </button>
-
-          <div className="flex gap-3">
-            <input
-              type="text"
-              placeholder="Coupon Code"
-              className="border px-3 py-2 rounded w-48"
-            />
-            <button className="bg-[#FF8400] text-white px-4 py-2 rounded">
-              Apply Coupon
-            </button>
+          <div className="coupon-box">
+            <input type="text" placeholder="Coupon Code" />
+            <button className="apply-btn">Apply Coupon</button>
           </div>
+          <button className="update-btn">Update Cart</button>
         </div>
 
         {/* Right Cart Totals */}
-        <div className="border rounded-lg p-6 w-full md:w-80">
-          <h3 className="text-lg font-semibold mb-4">Cart Total</h3>
-          <div className="flex justify-between mb-2">
+        <div className="cart-total">
+          <h3>Cart Total</h3>
+          <div className="total-row">
             <span>Subtotal</span>
             <span>${subtotal}</span>
           </div>
-          <div className="flex justify-between mb-2">
+          <div className="total-row">
             <span>Shipping</span>
-            <span className="text-green-600">Free</span>
+            <span className="free">Free</span>
           </div>
-          <div className="flex justify-between font-semibold border-t pt-2">
+          <div className="total-row total">
             <span>Total</span>
             <span>${subtotal}</span>
           </div>
-          <button className="w-full bg-[#FF8400] text-white py-2 mt-4 rounded">
-            Proceed To Checkout
-          </button>
+          <button className="checkout-btn">Proceed To Checkout</button>
         </div>
       </div>
     </div>
