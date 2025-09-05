@@ -79,7 +79,7 @@ export default function CartPage() {
             <input type="text" placeholder="Coupon Code" />
             <button className="apply-btn">Apply Coupon</button>
           </div>
-          <button className="update-btn">Update Cart</button>
+         
         </div>
 
         {/* Right Cart Totals */}

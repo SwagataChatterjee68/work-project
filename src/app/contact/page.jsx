@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import "./contact.css"; // make sure this path is correct
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -19,42 +20,38 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen py-32">
-      <div className="max-w-6xl mx-auto px-4">
+    <div className="contact-wrapper">
+      <div className="contact-container">
         {/* Breadcrumb */}
-        <p className="text-sm text-gray-500 mb-6">
+        <p className="contact-breadcrumb">
           Home / <span className="text-black">Contact</span>
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="contact-grid">
           {/* Left Section */}
           <div className="space-y-6">
             {/* Call Us */}
-            <div className="bg-white shadow-md rounded-lg p-6">
+            <div className="contact-card">
               <div className="flex items-start space-x-4">
-                <div className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center text-white text-lg font-bold">
-                </div>
+                <div className="contact-icon"></div>
                 <div>
-                  <h3 className="font-semibold text-gray-800 mb-1">Call To Us</h3>
-                  <p className="text-sm text-gray-500 mb-1">
-                    We are available 24/7, 7 days a week.
-                  </p>
-                  <p className="text-sm text-gray-800">Phone: +8801611112222</p>
+                  <h3 className="contact-title">Call To Us</h3>
+                  <p className="contact-sub">We are available 24/7, 7 days a week.</p>
+                  <p className="contact-text">Phone: +8801611112222</p>
                 </div>
               </div>
             </div>
 
             {/* Write To Us */}
-            <div className="bg-white shadow-md rounded-lg p-6">
+            <div className="contact-card">
               <div className="flex items-start space-x-4">
-                <div className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center text-white text-lg font-bold">
-                </div>
+                <div className="contact-icon"></div>
                 <div>
-                  <h3 className="font-semibold text-gray-800 mb-1">Write To Us</h3>
-                  <p className="text-sm text-gray-500 mb-1">
+                  <h3 className="contact-title">Write To Us</h3>
+                  <p className="contact-sub">
                     Fill out our form and we will contact you within 24 hours.
                   </p>
-                  <p className="text-sm text-gray-800">
+                  <p className="contact-text">
                     Emails: customer@exclusive.com <br />
                     support@exclusive.com
                   </p>
@@ -65,12 +62,9 @@ export default function ContactPage() {
 
           {/* Right Section - Form */}
           <div className="md:col-span-2">
-            <form
-              onSubmit={handleSubmit}
-              className="bg-white shadow-md rounded-lg p-6 space-y-6"
-            >
+            <form onSubmit={handleSubmit} className="contact-form">
               {/* Top Fields */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="contact-input-group">
                 <input
                   type="text"
                   name="name"
@@ -78,7 +72,7 @@ export default function ContactPage() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-orange-400 outline-none"
+                  className="contact-input"
                 />
                 <input
                   type="email"
@@ -87,7 +81,7 @@ export default function ContactPage() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-orange-400 outline-none"
+                  className="contact-input"
                 />
                 <input
                   type="tel"
@@ -96,7 +90,7 @@ export default function ContactPage() {
                   value={formData.phone}
                   onChange={handleChange}
                   required
-                  className="border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-orange-400 outline-none"
+                  className="contact-input"
                 />
               </div>
 
@@ -107,14 +101,11 @@ export default function ContactPage() {
                 rows={6}
                 value={formData.message}
                 onChange={handleChange}
-                className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-orange-400 outline-none"
+                className="contact-textarea"
               ></textarea>
 
               {/* Button */}
-              <button
-                type="submit"
-                className="bg-orange-500 text-white px-6 py-2 rounded-md hover:bg-orange-600"
-              >
+              <button type="submit" className="contact-btn">
                 Save Changes
               </button>
             </form>
